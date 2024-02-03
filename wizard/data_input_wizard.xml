@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="km_petronad_import_data_input_wizard_form" model="ir.ui.view">
+            <field name="name">km_petronad_import.data_input.wizard.form</field>
+            <field name="model">km_petronad_import.data_input.wizard</field>
+            <field name="arch" type="xml">
+                <form edit="0" js_class="km_petronad_import_data_input">
+
+                    <group>
+                        <group>
+<!--                            <field name="project" options='{"no_open": True, "no_create": True}'/>-->
+                            <field name="start_datetime"  />
+                            <field name="end_datetime"  />
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <group>
+
+                        <group string="">
+                            <field name="company" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="production_unit" domain="[('company', '=', company)]" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="fluid" options="{'no_create': True, 'no_open': True}" domain="[('production_units', 'in', production_unit)]"/>
+                            <field name="tank" domain="[('fluid', '=', fluid)]"
+                                   options="{'no_create': True, 'no_open': True}" />
+                            <label for="tank_capacity"/>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="tank_capacity"/>
+                                    <field name="tank_capacity"  />
+                                </div>
+                                <div class="col">
+                                    <label for="tank_amount"/>
+                                    <field name="tank_amount"  />
+                                </div>
+                            </div>
+
+                            <field name="operation" options="{'no_create': True, 'no_open': True}"
+                                   domain="[('fluid', '=', fluid)]" />
+                            <field name="operation_code" invisible="1"/>
+                            <field name="tank2" domain="[('fluid', '=', fluid),('id', '!=', tank),]"
+                                   options="{'no_create': True, 'no_open': True}"
+                                   attrs="{'invisible': [('operation_code', '!=', 'movement')], 'required': [('operation_code', '=', 'movement')]}"/>
+<!--                            <field name="sending_types" attrs="{'invisible': [('operation_code', '!=', 'sending')], 'required': [('operation_code', '=', 'sending')]}"/>-->
+                            <field name="destination"
+                                   attrs="{'invisible': [('operation_code', '!=', 'sending')], 'required': [('operation_code', '=', 'sending')]}"/>
+
+
+
+
+                            <label for="tank2_capacity" attrs="{'invisible': [('operation_code', '!=', 'movement')]}"/>
+                            <div class="row" attrs="{'invisible': [('operation_code', '!=', 'movement')]}">
+                                <div class="col">
+                                    <label for="tank2_capacity"/>
+                                    <field name="tank2_capacity"  />
+                                </div>
+                                <div class="col">
+                                    <label for="tank2_amount"/>
+                                    <field name="tank2_amount"  />
+                                </div>
+                            </div>
+                            <field name="amount" />
+
+
+                        </group>
+                        <group string="Sale">
+<!--                            <field name="meg_sale" string="MEG"  />-->
+<!--                            <field name="deg_sale" string="DEG"  />-->
+<!--                            <field name="teg_sale" string="TEG"  />-->
+<!--                            <field name="h1_sale" string="H1"  />-->
+<!--                            <field name="h2_sale" string="H2"  />-->
+<!--                            <field name="description_sale" string="Description"  />-->
+
+                        </group>
+                    </group>
+                    <group string="Feed In/Out">
+                        <group>
+<!--                            <field name="feed_in"  />-->
+<!--                            <field name="feed_out"  />-->
+<!--                            <field name="description_feed" string="Description"  />-->
+                        </group>
+                        <group>
+                        </group>
+                        <group>
+
+                        </group>
+
+                    </group>
+
+
+                    <footer>
+                        <button name="process_data" string="Save" type="object" class="btn btn-primary"/>
+                        <button string="Cancel" special="cancel" class="btn-secondary"/>
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="km_petronad_import_data_input_wizard_action" model="ir.actions.act_window">
+            <field name="name">Data Input</field>
+            <field name="res_model">km_petronad_import.data_input.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+<!--        <menuitem name="Data Input 1"-->
+<!--                  sequence="20"-->
+<!--                  id="km_petronad_import_data_input"-->
+<!--                  parent="km_petronad_import.petronad_menu"-->
+<!--                  action="km_petronad_import_data_input_wizard_action"/>-->
+    </data>
+</odoo>
+
