@@ -11,6 +11,9 @@
                         <button name="j_data_date_converter"
                                 string="Date Converter" class="btn btn-warning mx-1"
                                 type="object" groups="base.group_system"/>
+                        <button name="amount_converter"
+                                string="Amount" class="btn btn-danger mx-1"
+                                type="object" groups="base.group_system"/>
                     </header>
 
                 </xpath>
