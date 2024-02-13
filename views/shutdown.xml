@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+            <record id="shutdown_list_inherit" model="ir.ui.view">
+            <field name="name">km_petronad.shutdown_list</field>
+            <field name="model">km_petronad.shutdown</field>
+            <field name="inherit_id" ref="km_petronad.shutdown_list"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="inside">
+                    <header>
+                        <button name="j_data_date_converter"
+                                string="Date Converter" class="btn btn-warning mx-1"
+                                type="object" groups="base.group_system"/>
+                    </header>
+
+                </xpath>
+                <xpath expr="//field[@name='shutdown_date']" position="before">
+                    <field name="j_data_date"/>
+                </xpath>
+            </field>
+            </record>
+
+</odoo>

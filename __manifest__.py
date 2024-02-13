@@ -25,6 +25,7 @@
     'data': [
         'views/views.xml',
         'views/production_record.xml',
+        'views/shutdown.xml',
         ],
     'assets': {
 

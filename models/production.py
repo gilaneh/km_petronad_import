@@ -11,7 +11,22 @@ class KmPetronadProductionRecordInherit(models.Model):
     _inherit = 'km_petronad.production_record'
 
     j_data_date = fields.Char()
+    water = fields.Float()
 
+    # PEG off
+    m = fields.Float()
+    d = fields.Float()
+    t = fields.Float()
+    tt = fields.Float()
+    salt = fields.Float()
+    uk = fields.Float()
+
+    # Glycerin crude
+    nacl = fields.Float()
+    glycerin = fields.Float()
+    mong = fields.Float()
+    methanol = fields.Float()
+    ph = fields.Float()
     def j_data_date_converter(self):
         active_ids = self.env.context.get('active_ids')
         production_records = self.browse(active_ids)
